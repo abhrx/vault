@@ -1,23 +1,23 @@
-# Vault — “Your Personal Cinema”
+# Vault
 
-A sleek, static **movie / TV / anime discovery + streaming UI** powered by **TMDB** (metadata) and multiple embed providers (playback), with watchlist + history stored locally in your browser.
+**Your Personal Cinema**: a slick, static web app for discovering movies, TV shows, and anime, then playing them via selectable embed sources. Metadata comes from **TMDB**, and your **watchlist/history live in your browser**.
 
-> Entry points:
-> - Landing page: `htdocs/index.html`
-> - App: `htdocs/vault/index.html`
+**Entry points**
+- Landing page: `htdocs/index.html`
+- Main app: `htdocs/vault/index.html`
 
 ---
 
 ## Features
 
-- **Browse trending** (day / week)
-- **Search** (All / Movies / TV Shows)
-- **Genres** quick filters
-- **Watchlist + History** (saved in `localStorage`)
-- **“Featured” hero** section on the home screen
-- **Multiple playback sources** (switchable)
-- **Anime helpers** via Jikan (MyAnimeList lookup) for sub/dub style embeds
-- **Clean URLs + caching rules** via Apache `.htaccess`
+- **Trending**: day/week lists
+- **Search**: all, movies, TV
+- **Genre filters**
+- **Watchlist + history**: saved in `localStorage`
+- **Featured hero** on the home screen
+- **Multiple playback sources**: switch any time
+- **Anime support**: Jikan (MyAnimeList) lookup to help pick sub/dub style embeds
+- **Clean URLs + caching** when hosted on Apache via `.htaccess`
 
 ---
 
@@ -28,16 +28,16 @@ vault/
 ├─ README.md
 └─ htdocs/
    ├─ .htaccess
-   ├─ index.html              # landing page (redirects into /vault)
-   ├─ app.js                  # landing page JS (TMDB backdrop + search handoff)
-   ├─ elements.css            # nekoweb sitebox styling (optional / hosting-specific)
-   ├─ err/                    # custom error pages
+   ├─ index.html              # landing page (links into /vault)
+   ├─ app.js                  # landing page logic (TMDB backdrop + search handoff)
+   ├─ elements.css            # Nekoweb sitebox styling (hosting-specific)
+   ├─ err/                    # custom error pages (Apache)
    │  ├─ 400.html 401.html 403.html 404.html 503.html
    └─ vault/                  # main app
       ├─ index.html
       ├─ style.css
       ├─ app.js               # main app logic
-      ├─ config.js            # small runtime config (defaults / maintenance / notice)
+      ├─ config.js            # runtime config (defaults, maintenance, notification)
       ├─ watchlist.html
       ├─ history.html
       ├─ settings.html
@@ -52,7 +52,7 @@ vault/
 
 ### Option A: simple local server (fastest)
 
-This runs the site, but **Apache-only features** (like “clean URLs” rewrites) won’t apply.
+This runs the site, but **Apache-only features** (like clean-URL rewrites) will not apply.
 
 ```bash
 cd htdocs
@@ -78,7 +78,7 @@ This enables:
 
 ### TMDB API key (required for metadata)
 
-There’s a `TMDB_KEY` constant in:
+There is a `TMDB_KEY` constant in:
 - `htdocs/index.html` (landing backdrop + search redirect)
 - `htdocs/vault/app.js` (main app)
 
@@ -104,7 +104,7 @@ Runtime toggles live in `htdocs/vault/config.js` via `window.siteConfig`, includ
 
 ## Deploy
 
-This is a static site—deploy anywhere that can serve HTML/CSS/JS.
+This is a static site, so you can deploy it anywhere that serves HTML/CSS/JS.
 
 - **Best experience**: Apache hosting with `.htaccess` support (clean URLs + caching rules).
 - **Static hosts** (no `.htaccess`): still works, but you should link to the explicit `.html` pages (or configure redirects/rewrites on that platform).
