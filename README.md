@@ -1,4 +1,10 @@
 # Vault
+<img width="1365" height="629" alt="image" src="https://github.com/user-attachments/assets/2a7471e9-5974-4d50-b456-b9bc0af8da7a" />
+<img width="1363" height="636" alt="image" src="https://github.com/user-attachments/assets/dbd5299a-3f41-4d98-8409-bbda754fc2d0" />
+<img width="1364" height="634" alt="image" src="https://github.com/user-attachments/assets/f3425467-77b6-4a7e-9c9a-a997fbf50019" />
+
+
+
 
 **Your Personal Cinema**: a slick, static web app for discovering movies, TV shows, and anime, then playing them via selectable embed sources. Metadata comes from **TMDB**, and your **watchlist/history live in your browser**.
 
