@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <script>
+    if (window.location.pathname.endsWith('/index.html')) {
+      const cleanUrl = window.location.pathname.replace('/index.html', '/');
+      window.history.replaceState({}, '', cleanUrl);
+    } else if (window.location.pathname.endsWith('.html')) {
+      const cleanUrl = window.location.pathname.replace('.html', '');
+      window.history.replaceState({}, '', cleanUrl);
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vault | System Maintenance</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/gotham');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --accent: #F0ECE4;
+      --accent-dim: #C4BAAA;
+    }
+
+    body {
+      font-family: 'Gotham', 'Century Gothic', sans-serif;
+      font-weight: 400;
+      background: #0A0A0A;
+      color: #E8E8E8;
+      min-height: 100vh;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .landing-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px) brightness(0.2);
+      transform: scale(1.1);
+    }
+
+    .landing-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to bottom,
+          rgba(10, 10, 10, 0.6) 0%,
+          rgba(10, 10, 10, 0.8) 50%,
+          rgba(10, 10, 10, 0.95) 100%);
+    }
+
+    .landing-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .landing-logo {
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeSlideUp 1s 0.2s ease forwards;
+    }
+
+    .landing-logo img {
+      height: 80px;
+      width: auto;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
+    }
+
+    .landing-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fadeSlideUp 1s 0.4s ease forwards;
+    }
+
+    .landing-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(232, 232, 232, 0.7);
+      margin-bottom: 40px;
+      font-weight: 400;
+      max-width: 600px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeSlideUp 1s 0.6s ease forwards;
+    }
+
+    .maintenance-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(240, 236, 228, 0.1);
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      animation: fadeSlideUp 1s 0.8s ease forwards;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #5B9BFF;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #5B9BFF;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    .maintenance-status span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--accent-dim);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .landing-title {
+        font-size: 2rem;
+      }
+
+      .landing-subtitle {
+        font-size: 1rem;
+        margin-bottom: 32px;
+      }
+
+      .landing-logo img {
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="landing-backdrop" id="landingBackdrop"></div>
+  <div class="landing-gradient"></div>
+
+  <div class="landing-container">
+    <div class="landing-logo">
+      <img src="vault-logo.png" alt="Vault" />
+    </div>
+
+    <h1 class="landing-title">We'll be right back.</h1>
+    <p class="landing-subtitle">
+      Vault is currently undergoing scheduled updates to improve your streaming experience.<br>
+      Please check back soon.
+    </p>
+
+    <div class="maintenance-status">
+      <div class="status-dot"></div>
+      <span>System Updating</span>
+    </div>
+  </div>
+
+  <script>
+    const TMDB_KEY = '4e44d9029b1270a757cddc766a1bcb63';
+    const TMDB_BASE = 'https://api.themoviedb.org/3';
+    const IMG_ORI = 'https://image.tmdb.org/t/p/original';
+
+    async function loadBackdrop() {
+      try {
+        const response = await fetch(`${TMDB_BASE}/trending/movie/day?api_key=${TMDB_KEY}`);
+        const data = await response.json();
+        const movies = data.results || [];
+        const featured = movies[Math.floor(Math.random() * Math.min(5, movies.length))];
+
+        if (featured && featured.backdrop_path) {
+          const backdrop = document.getElementById('landingBackdrop');
+          backdrop.style.backgroundImage = `url(${IMG_ORI}${featured.backdrop_path})`;
+        }
+      } catch (e) {
+        console.error('Failed to load backdrop', e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadBackdrop();
+
+      setInterval(async () => {
+        try {
+          const res = await fetch('config.json?v=' + Date.now());
+          const config = await res.json();
+          if (config && !config.maintenance) {
+            window.location.href = 'index.html';
+          }
+        } catch (e) { }
+      }, 30000);
+    });
+  </script>
+
+</body>
+
+</html>
