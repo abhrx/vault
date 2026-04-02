@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  
+  <script>
+    if (window.location.pathname.endsWith('/index.html')) {
+      const cleanUrl = window.location.pathname.replace('/index.html', '/');
+      window.history.replaceState({}, '', cleanUrl);
+    } else if (window.location.pathname.endsWith('.html')) {
+      const cleanUrl = window.location.pathname.replace('.html', '');
+      window.history.replaceState({}, '', cleanUrl);
+    }
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My lists — Vault</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-left">
+    <button class="hamburger-btn" id="hamburgerBtn" title="Menu">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+
+  <a class="nav-logo" href="index.html">
+    <img src="vault-logo.png" alt="Vault" class="logo-image" />
+  </a>
+
+  <div class="nav-actions">
+    <button class="nav-trending-btn" id="navTrendingBtn" title="Trending">
+      <i data-lucide="trending-up"></i>
+    </button>
+    <button class="nav-search-btn" id="searchOpenBtn" title="Search">
+      <i data-lucide="search"></i>
+    </button>
+  </div>
+</nav>
+
+<div class="hamburger-overlay" id="hamburgerOverlay"></div>
+
+<div class="hamburger-menu" id="hamburgerMenu">
+  <div class="hamburger-header">
+    <button class="hamburger-close" id="hamburgerCloseBtn">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <div class="hamburger-content">
+    <div class="hamburger-section">
+      <a class="hamburger-link" href="index.html">
+        <i data-lucide="home"></i>
+        <span>Home</span>
+      </a>
+      <a class="hamburger-link" href="index.html#trendingSection">
+        <i data-lucide="trending-up"></i>
+        <span>Trending</span>
+      </a>
+      <a class="hamburger-link" href="watchlist.html">
+        <i data-lucide="bookmark"></i>
+        <span>Watchlist</span>
+      </a>
+      <a class="hamburger-link active" href="lists.html">
+        <i data-lucide="layout-list"></i>
+        <span>My lists</span>
+      </a>
+      <a class="hamburger-link" href="history.html">
+        <i data-lucide="history"></i>
+        <span>History</span>
+      </a>
+    </div>
+
+    <div class="hamburger-divider"></div>
+
+    <div class="hamburger-section">
+      <div class="hamburger-section-title">Genres</div>
+      <a class="hamburger-link genre-link" href="index.html?genre=28">
+        <i data-lucide="zap"></i>
+        <span>Action</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=35">
+        <i data-lucide="smile"></i>
+        <span>Comedy</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=18">
+        <i data-lucide="drama"></i>
+        <span>Drama</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=27">
+        <i data-lucide="ghost"></i>
+        <span>Horror</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=878">
+        <i data-lucide="rocket"></i>
+        <span>Sci-Fi</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=16">
+        <i data-lucide="sparkles"></i>
+        <span>Animation</span>
+      </a>
+    </div>
+
+    <div class="hamburger-divider"></div>
+
+    <div class="hamburger-section">
+      <a class="hamburger-link" href="settings.html">
+        <i data-lucide="settings"></i>
+        <span>Settings</span>
+      </a>
+      <a class="hamburger-link" href="contact.html">
+        <i data-lucide="mail"></i>
+        <span>Contact</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-wrapper">
+    <div class="search-bar">
+      <i data-lucide="search"></i>
+      <input type="text" id="searchInput" placeholder="Search movies, shows, anime..." autocomplete="off" />
+      <button class="search-close" id="searchCloseBtn"><i data-lucide="x"></i></button>
+    </div>
+    <div class="search-filters" id="searchFilters">
+      <button class="filter-chip active" data-type="multi">All</button>
+      <button class="filter-chip" data-type="movie">Movies</button>
+      <button class="filter-chip" data-type="tv">TV Shows</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="main-content page lists-page">
+  <div class="page-header">
+    <div>
+      <h1><i data-lucide="layout-list"></i> My lists</h1>
+      <p>Named collections beyond your main watchlist</p>
+    </div>
+  </div>
+  <div class="lists-layout">
+    <aside class="lists-sidebar">
+      <div class="lists-new-row">
+        <input type="text" id="newListName" class="lists-new-input" placeholder="New list name" maxlength="80" />
+        <button type="button" class="settings-btn" id="createListBtn"><i data-lucide="plus"></i> Create</button>
+      </div>
+      <ul id="listsNav" class="lists-nav" aria-label="Your lists"></ul>
+    </aside>
+    <div class="lists-main">
+      <div class="lists-main-header">
+        <h2 id="activeListTitle" class="lists-active-title">Select or create a list</h2>
+        <div class="lists-main-actions">
+          <button type="button" class="settings-btn" id="renameListBtn" disabled><i data-lucide="pencil"></i> Rename</button>
+          <button type="button" class="settings-btn danger" id="deleteListBtn" disabled><i data-lucide="trash-2"></i> Delete</button>
+        </div>
+      </div>
+      <p class="lists-hint" id="listsHint">Create a list, then add titles from any detail page via “Add to list”.</p>
+      <div class="grid-section">
+        <div class="media-grid" id="listsGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-modal" style="position:relative;">
+    <button class="detail-close" id="detailCloseBtn"><i data-lucide="x"></i></button>
+    <img class="detail-backdrop" id="detailBackdrop" src="" alt="" onerror="this.style.display='none'" />
+    <div class="detail-body">
+      <div class="detail-header">
+        <img class="detail-poster" id="detailPoster" src="" alt="" onerror="this.style.display='none'" />
+        <div class="detail-info">
+          <h2 class="detail-title" id="detailTitle"></h2>
+          <div class="detail-meta" id="detailMeta"></div>
+        </div>
+      </div>
+      <p class="detail-overview" id="detailOverview"></p>
+      <div class="detail-actions" id="detailActions"></div>
+    </div>
+  </div>
+</div>
+
+<div class="player-page" id="playerPage">
+  <div class="player-header">
+    <button class="player-back-btn" id="playerBackBtn">
+      <i data-lucide="arrow-left"></i> Back to Vault
+    </button>
+  </div>
+
+  <div class="player-video-container">
+    <iframe id="playerIframe" allow="autoplay; fullscreen *; encrypted-media *; picture-in-picture" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe>
+    <div class="player-click-overlay" id="playerClickOverlay"></div>
+  </div>
+
+  <div class="player-content">
+    
+    <div class="player-meta-section">
+      <img id="playerInfoLogo" src="" alt="Logo" onerror="this.style.display='none'">
+      <h1 id="playerInfoTitle"></h1>
+      <div class="player-info-meta" id="playerInfoMeta"></div>
+      <p class="player-info-desc" id="playerInfoDesc"></p>
+      
+      <div class="player-settings">
+        <h3>Host / Server</h3>
+        <div id="sourceDropdownRoot"></div>
+
+        <div id="animeControls" class="hidden" style="margin-top: 15px;">
+          <h3>Anime Format</h3>
+          <div class="player-source-bar">
+            <button class="source-btn anime-type-btn active" data-type="sub">Sub</button>
+            <button class="source-btn anime-type-btn" data-type="dub">Dub</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-episodes-section" id="episodesSection" style="display: none;">
+      <div class="episodes-header">
+        <h3>Episodes</h3>
+        <select class="ep-select" id="seasonSelect"></select>
+      </div>
+      <div class="episodes-grid" id="episodeBtns"></div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toastContainer" style="position: fixed; top: 20px; right: 20px; z-index: 10000; display: flex; flex-direction: column; pointer-events: none;"></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "@radix-ui/react-dropdown-menu": "https://esm.sh/@radix-ui/react-dropdown-menu@2.1.2?external=react,react-dom"
+  }
+}
+</script>
+
+<script src="config.js?v=4"></script>
+<script src="app.js?v=4"></script>
+
+<script type="module">
+import React, { useState, useEffect, useCallback } from 'react';
+import { createRoot } from 'react-dom/client';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+
+const e = React.createElement;
+
+const SOURCES = [
+  { id: 'vidlink',    label: 'VidLink' },
+  { id: 'vidrock',    label: 'VidRock' },
+  { id: '111movies',  label: '111Movies' },
+  { id: 'vidzee',     label: 'VidZee' },
+  { id: 'vidsrc',     label: 'VidSrc 1' },
+  { id: 'vidsrc2',    label: 'VidSrc 2' },
+  { id: 'vidsrc3',    label: 'VidSrc 3' },
+  { id: 'videasy',    label: 'Videasy' },
+  { id: 'vidnest',    label: 'VidNest' },
+  { id: 'rivestream', label: 'RiveStream' },
+  { id: 'vidsrcxyz',  label: 'VidSrc XYZ' },
+  { id: 'vidsrcicu',  label: 'VidSrc ICU' },
+];
+
+function ChevronIcon() {
+  return e('svg', {
+    className: 'source-chevron',
+    width: 12, height: 12,
+    viewBox: '0 0 12 12',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.8,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round'
+  }, e('polyline', { points: '2 4 6 8 10 4' }));
+}
+
+function CheckIcon() {
+  return e('svg', {
+    width: 12, height: 12,
+    viewBox: '0 0 12 12',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round'
+  }, e('polyline', { points: '2 6 5 9 10 3' }));
+}
+
+function SourceDropdown() {
+  const [selected, setSelected] = useState('vidlink');
+
+  useEffect(() => {
+    const handler = (ev) => setSelected(ev.detail || 'vidlink');
+    window.addEventListener('playerSourceChanged', handler);
+    return () => window.removeEventListener('playerSourceChanged', handler);
+  }, []);
+
+  const handleSelect = useCallback((srcId) => {
+    setSelected(srcId);
+    if (window.setPlayerSource) window.setPlayerSource(srcId);
+  }, []);
+
+  const current = SOURCES.find(s => s.id === selected) || SOURCES[0];
+
+  return e(DropdownMenu.Root, null,
+    e(DropdownMenu.Trigger, { className: 'source-dropdown-trigger', asChild: false },
+      e('span', { className: 'source-dropdown-label' }, current.label),
+      e(ChevronIcon)
+    ),
+    e(DropdownMenu.Portal, null,
+      e(DropdownMenu.Content, {
+        className: 'source-dropdown-content',
+        sideOffset: 8,
+        align: 'start',
+        avoidCollisions: true
+      },
+        ...SOURCES.map(src =>
+          e(DropdownMenu.Item, {
+            key: src.id,
+            className: 'source-dropdown-item' + (src.id === selected ? ' selected' : ''),
+            onSelect: () => handleSelect(src.id)
+          },
+            e('span', { className: 'source-item-label' }, src.label),
+            src.id === selected ? e(CheckIcon) : null
+          )
+        )
+      )
+    )
+  );
+}
+
+const container = document.getElementById('sourceDropdownRoot');
+if (container) {
+  const root = createRoot(container);
+  root.render(e(SourceDropdown));
+}
+</script>
+
+<script>
+  let activeListId = null;
+
+  function renderListsNav() {
+    const ul = document.getElementById('listsNav');
+    if (!ul) return;
+    const { lists } = getCollections();
+    ul.innerHTML = '';
+    if (!lists.length) {
+      const li = document.createElement('li');
+      li.className = 'lists-nav-empty';
+      li.textContent = 'No lists yet';
+      ul.appendChild(li);
+      activeListId = null;
+      renderActiveList();
+      return;
+    }
+    if (!activeListId || !lists.some(l => l.id === activeListId)) activeListId = lists[0].id;
+    lists.forEach(list => {
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'lists-nav-btn' + (list.id === activeListId ? ' active' : '');
+      btn.textContent = list.name;
+      btn.addEventListener('click', () => {
+        activeListId = list.id;
+        renderListsNav();
+      });
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+    renderActiveList();
+  }
+
+  function renderActiveList() {
+    const grid = document.getElementById('listsGrid');
+    const titleEl = document.getElementById('activeListTitle');
+    const hint = document.getElementById('listsHint');
+    const renameBtn = document.getElementById('renameListBtn');
+    const deleteBtn = document.getElementById('deleteListBtn');
+    if (!grid) return;
+    const { lists } = getCollections();
+    const list = lists.find(l => l.id === activeListId);
+    if (!list) {
+      if (titleEl) titleEl.textContent = 'Select or create a list';
+      if (hint) hint.style.display = 'block';
+      if (renameBtn) renameBtn.disabled = true;
+      if (deleteBtn) deleteBtn.disabled = true;
+      grid.innerHTML = '';
+      return;
+    }
+    if (titleEl) titleEl.textContent = list.name;
+    if (hint) hint.style.display = list.items.length ? 'none' : 'block';
+    if (renameBtn) renameBtn.disabled = false;
+    if (deleteBtn) deleteBtn.disabled = false;
+
+    grid.innerHTML = '';
+    if (!list.items.length) {
+      grid.innerHTML = `
+        <div class="empty-state" style="grid-column:1/-1;">
+          <i data-lucide="layout-list" style="width:48px;height:48px;opacity:0.2;"></i>
+          <h3>This list is empty</h3>
+          <p>Open any title and use “Add to list” in the detail panel.</p>
+        </div>`;
+      lucide.createIcons();
+      return;
+    }
+    list.items.forEach(item => {
+      const wrap = document.createElement('div');
+      wrap.className = 'card-wrap-lists';
+      const card = buildCard(item);
+      const rm = document.createElement('button');
+      rm.type = 'button';
+      rm.className = 'card-remove-from-list';
+      rm.title = 'Remove from list';
+      rm.innerHTML = '<i data-lucide="x"></i>';
+      rm.addEventListener('click', ev => {
+        ev.stopPropagation();
+        removeItemFromCollection(activeListId, item.id);
+        renderListsNav();
+      });
+      wrap.appendChild(card);
+      wrap.appendChild(rm);
+      grid.appendChild(wrap);
+    });
+    lucide.createIcons();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('createListBtn')?.addEventListener('click', () => {
+      const inp = document.getElementById('newListName');
+      const name = inp && inp.value.trim();
+      if (!name) {
+        if (typeof showToast === 'function') showToast('Enter a list name', 'info');
+        return;
+      }
+      activeListId = createCollection(name);
+      inp.value = '';
+      renderListsNav();
+      if (typeof showToast === 'function') showToast(`Created “${name}”`, 'list');
+    });
+    document.getElementById('renameListBtn')?.addEventListener('click', () => {
+      if (!activeListId) return;
+      const list = getCollections().lists.find(l => l.id === activeListId);
+      const n = window.prompt('Rename list:', list ? list.name : '');
+      if (!n || !String(n).trim()) return;
+      renameCollection(activeListId, String(n).trim());
+      renderListsNav();
+    });
+    document.getElementById('deleteListBtn')?.addEventListener('click', () => {
+      if (!activeListId) return;
+      if (!confirm('Delete this list? Titles stay in your watchlist / history.')) return;
+      deleteCollection(activeListId);
+      activeListId = null;
+      renderListsNav();
+    });
+    renderListsNav();
+  });
+  window.addEventListener('vault:collectionsUpdated', () => {
+    renderListsNav();
+  });
+</script>
+</body>
+</html>

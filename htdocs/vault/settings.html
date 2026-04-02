@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <script>
+    if (window.location.pathname.endsWith('/index.html')) {
+      const cleanUrl = window.location.pathname.replace('/index.html', '/');
+      window.history.replaceState({}, '', cleanUrl);
+    } else if (window.location.pathname.endsWith('.html')) {
+      const cleanUrl = window.location.pathname.replace('.html', '');
+      window.history.replaceState({}, '', cleanUrl);
+    }
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Vault</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+
+<body>
+
+  <nav class="nav" id="mainNav">
+    <div class="nav-left">
+      <button class="hamburger-btn" id="hamburgerBtn" title="Menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+
+<a class="nav-logo" href="index.html">
+      <img src="vault-logo.png" alt="Vault" class="logo-image" />
+    </a>
+
+    <div class="nav-actions">
+      <button class="nav-trending-btn" id="navTrendingBtn" title="Trending">
+        <i data-lucide="trending-up"></i>
+      </button>
+      <button class="nav-search-btn" id="searchOpenBtn" title="Search">
+        <i data-lucide="search"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="hamburger-overlay" id="hamburgerOverlay"></div>
+
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="hamburger-header">
+      <button class="hamburger-close" id="hamburgerCloseBtn">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <div class="hamburger-content">
+      <div class="hamburger-section">
+        <a class="hamburger-link" href="index.html">
+          <i data-lucide="home"></i>
+          <span>Home</span>
+        </a>
+        <a class="hamburger-link" href="index.html#trendingSection">
+          <i data-lucide="trending-up"></i>
+          <span>Trending</span>
+        </a>
+        <a class="hamburger-link" href="watchlist.html">
+          <i data-lucide="bookmark"></i>
+          <span>Watchlist</span>
+        </a>
+        <a class="hamburger-link" href="lists.html">
+          <i data-lucide="layout-list"></i>
+          <span>My lists</span>
+        </a>
+        <a class="hamburger-link" href="history.html">
+          <i data-lucide="history"></i>
+          <span>History</span>
+        </a>
+      </div>
+
+      <div class="hamburger-divider"></div>
+
+      <div class="hamburger-section">
+        <div class="hamburger-section-title">Genres</div>
+        <a class="hamburger-link genre-link" href="index.html?genre=28">
+          <i data-lucide="zap"></i>
+          <span>Action</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=35">
+          <i data-lucide="smile"></i>
+          <span>Comedy</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=18">
+          <i data-lucide="drama"></i>
+          <span>Drama</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=27">
+          <i data-lucide="ghost"></i>
+          <span>Horror</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=878">
+          <i data-lucide="rocket"></i>
+          <span>Sci-Fi</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=16">
+          <i data-lucide="sparkles"></i>
+          <span>Animation</span>
+        </a>
+      </div>
+
+      <div class="hamburger-divider"></div>
+
+      <div class="hamburger-section">
+        <a class="hamburger-link active" href="settings.html">
+          <i data-lucide="settings"></i>
+          <span>Settings</span>
+        </a>
+        <a class="hamburger-link" href="contact.html">
+          <i data-lucide="mail"></i>
+          <span>Contact</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-wrapper">
+      <div class="search-bar">
+        <i data-lucide="search"></i>
+        <input type="text" id="searchInput" placeholder="Search movies, shows, anime..." autocomplete="off" />
+        <button class="search-close" id="searchCloseBtn"><i data-lucide="x"></i></button>
+      </div>
+      <div class="search-filters" id="searchFilters">
+        <button class="filter-chip active" data-type="multi">All</button>
+        <button class="filter-chip" data-type="movie">Movies</button>
+        <button class="filter-chip" data-type="tv">TV Shows</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <div class="main-content page">
+    <div class="settings-container">
+
+      <div class="settings-header">
+        <h1>Settings</h1>
+        <p>Customize your viewing experience</p>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-header">
+          <i data-lucide="palette"></i>
+          <h2>Appearance</h2>
+        </div>
+
+        <div class="settings-list">
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Accent Color</div>
+              <div class="settings-item-desc">Primary highlight color throughout the app</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <select class="settings-select" id="accentSelect">
+                <option value="cream">Cream (Default)</option>
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="custom">Custom</option>
+              </select>
+              <input type="color" id="customColorPicker" style="display: none; width: 100%; height: 40px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-card);">
+            </div>
+          </div>
+
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Font Size</div>
+              <div class="settings-item-desc">Adjust the overall text size</div>
+            </div>
+            <select class="settings-select" id="fontSizeSelect">
+              <option value="small">Small</option>
+              <option value="medium">Medium (Default)</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-header">
+          <i data-lucide="play-circle"></i>
+          <h2>Playback</h2>
+        </div>
+
+        <div class="settings-list">
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Default Server</div>
+              <div class="settings-item-desc">Preferred streaming source for videos</div>
+            </div>
+            <select class="settings-select" id="serverSelect">
+              <option value="vidlink">VidLink</option>
+              <option value="vidrock">VidRock</option>
+              <option value="111movies">111Movies</option>
+              <option value="vidzee">VidZee</option>
+              <option value="vidsrc">VidSrc 1</option>
+              <option value="vidsrc2">VidSrc 2</option>
+              <option value="vidsrc3">VidSrc 3</option>
+              <option value="videasy">Videasy</option>
+              <option value="vidnest">VidNest</option>
+              <option value="rivestream">RiveStream</option>
+              <option value="vidsrcxyz">VidSrc XYZ</option>
+              <option value="vidsrcicu">VidSrc ICU</option>
+            </select>
+          </div>
+
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Autoplay Next Episode</div>
+              <div class="settings-item-desc">Automatically play the next episode when current one ends</div>
+            </div>
+            <label class="settings-toggle">
+              <input type="checkbox" id="autoplayToggle" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Show Skip Buttons</div>
+              <div class="settings-item-desc">Display skip intro and skip outro controls in player</div>
+            </div>
+            <label class="settings-toggle">
+              <input type="checkbox" id="skipButtonsToggle" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Auto-play Trailers</div>
+              <div class="settings-item-desc">Automatically play video trailers when available</div>
+            </div>
+            <label class="settings-toggle">
+              <input type="checkbox" id="autoPlayTrailersToggle" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Enable Notifications</div>
+              <div class="settings-item-desc">Show toast notifications for actions and updates</div>
+            </div>
+            <label class="settings-toggle">
+              <input type="checkbox" id="notificationsToggle" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-header">
+          <i data-lucide="database"></i>
+          <h2>Data & Storage</h2>
+        </div>
+
+        <div class="settings-list">
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Export library</div>
+              <div class="settings-item-desc">Download watchlist, history, continue watching, and custom lists as JSON</div>
+            </div>
+            <button class="settings-btn" id="vaultExportBtn">
+              <i data-lucide="download"></i>
+              Export
+            </button>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Import library (merge)</div>
+              <div class="settings-item-desc">Add items from a backup without removing existing data</div>
+            </div>
+            <button class="settings-btn" id="vaultImportMergeBtn">
+              <i data-lucide="upload"></i>
+              Merge
+            </button>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Import library (replace)</div>
+              <div class="settings-item-desc">Overwrite local library with the file contents — cannot be undone</div>
+            </div>
+            <button class="settings-btn danger" id="vaultImportReplaceBtn">
+              <i data-lucide="refresh-ccw"></i>
+              Replace
+            </button>
+            <input type="file" id="vaultImportFile" accept="application/json,.json" style="display:none" />
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Clear Watch History</div>
+              <div class="settings-item-desc">Remove all items from your viewing history</div>
+            </div>
+            <button class="settings-btn danger" id="clearHistoryBtn">
+              <i data-lucide="trash-2"></i>
+              Clear History
+            </button>
+          </div>
+
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Clear Watchlist</div>
+              <div class="settings-item-desc">Remove all items from your watchlist</div>
+            </div>
+            <button class="settings-btn danger" id="clearWatchlistBtn">
+              <i data-lucide="trash-2"></i>
+              Clear Watchlist
+            </button>
+          </div>
+
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Clear Continue Watching</div>
+              <div class="settings-item-desc">Remove all items from your continue watching list</div>
+            </div>
+            <button class="settings-btn danger" id="clearContinueWatchingBtn">
+              <i data-lucide="trash-2"></i>
+              Clear Continue Watching
+            </button>
+          </div>
+
+          <div class="settings-item">
+            <div class="settings-item-info">
+              <div class="settings-item-label">Reset All Settings</div>
+              <div class="settings-item-desc">Restore all settings to default values</div>
+            </div>
+            <button class="settings-btn danger" id="resetSettingsBtn">
+              <i data-lucide="rotate-ccw"></i>
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="config.js?v=4"></script>
+  <script src="app.js?v=4"></script>
+  <script>
+    // Settings Page Management
+    (function initSettingsPage() {
+      function saveSetting(key, value) {
+        const settings = getSettings(); // Using global function from app.js
+        settings[key] = value;
+        localStorage.setItem('vault_settings', JSON.stringify(settings));
+        return settings;
+      }
+
+      function loadSettingsUI() {
+        const settings = getSettings(); // Using global function from app.js
+
+        const accent = settings.accent || 'cream';
+        const accentSelect = document.getElementById('accentSelect');
+        const customPicker = document.getElementById('customColorPicker');
+
+        if (accent.startsWith('#')) {
+          accentSelect.value = 'custom';
+          customPicker.value = accent;
+          customPicker.style.display = 'block';
+        } else {
+          accentSelect.value = accent;
+          customPicker.style.display = 'none';
+        }
+
+        document.getElementById('fontSizeSelect').value = settings.fontSize || 'medium';
+        // Fallback updated to videasy
+        document.getElementById('serverSelect').value = settings.defaultServer || 'videasy';
+        document.getElementById('autoplayToggle').checked = settings.autoplay !== false;
+        document.getElementById('skipButtonsToggle').checked = settings.skipButtons !== false;
+        document.getElementById('autoPlayTrailersToggle').checked = settings.autoPlayTrailers === true;
+        document.getElementById('notificationsToggle').checked = settings.notifications !== false;
+      }
+
+      // Event Listeners
+      document.getElementById('accentSelect').addEventListener('change', (e) => {
+        const customPicker = document.getElementById('customColorPicker');
+        if (e.target.value === 'custom') {
+          customPicker.style.display = 'block';
+          // If no custom color set, default to cream
+          const settings = getSettings();
+          if (!settings.accent.startsWith('#')) {
+            const creamColor = '#F0ECE4'; // From applyAccent
+            customPicker.value = creamColor;
+            saveSetting('accent', creamColor);
+            applyAccent(creamColor);
+          }
+        } else {
+          customPicker.style.display = 'none';
+          const settings = saveSetting('accent', e.target.value);
+          applyAccent(settings.accent);
+          showToast('Accent color updated', 'palette');
+        }
+      });
+
+      document.getElementById('customColorPicker').addEventListener('input', (e) => {
+        const color = e.target.value;
+        saveSetting('accent', color);
+        applyAccent(color);
+      });
+
+      document.getElementById('customColorPicker').addEventListener('change', (e) => {
+        showToast('Custom accent color updated', 'palette');
+      });
+
+      document.getElementById('fontSizeSelect').addEventListener('change', (e) => {
+        const settings = saveSetting('fontSize', e.target.value);
+        applyFontSize(settings.fontSize); // Using global function from app.js
+        showToast('Font size updated', 'type');
+      });
+
+      document.getElementById('serverSelect').addEventListener('change', (e) => {
+        saveSetting('defaultServer', e.target.value);
+        showToast('Default server updated', 'server');
+      });
+
+      document.getElementById('autoplayToggle').addEventListener('change', (e) => {
+        saveSetting('autoplay', e.target.checked);
+        showToast(e.target.checked ? 'Autoplay enabled' : 'Autoplay disabled', 'play-circle');
+      });
+
+      document.getElementById('skipButtonsToggle').addEventListener('change', (e) => {
+        saveSetting('skipButtons', e.target.checked);
+        showToast(e.target.checked ? 'Skip buttons enabled' : 'Skip buttons disabled', 'fast-forward');
+      });
+
+      document.getElementById('autoPlayTrailersToggle').addEventListener('change', (e) => {
+        saveSetting('autoPlayTrailers', e.target.checked);
+        showToast(e.target.checked ? 'Auto-play trailers enabled' : 'Auto-play trailers disabled', 'film');
+      });
+
+      document.getElementById('notificationsToggle').addEventListener('change', (e) => {
+        saveSetting('notifications', e.target.checked);
+        showToast(e.target.checked ? 'Notifications enabled' : 'Notifications disabled', 'bell');
+      });
+
+      document.getElementById('vaultExportBtn')?.addEventListener('click', () => {
+        const blob = new Blob([exportVaultDataJSON()], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'vault-library-backup.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        showToast('Library export downloaded', 'download');
+      });
+      let pendingImportMode = 'merge';
+      document.getElementById('vaultImportMergeBtn')?.addEventListener('click', () => {
+        pendingImportMode = 'merge';
+        document.getElementById('vaultImportFile')?.click();
+      });
+      document.getElementById('vaultImportReplaceBtn')?.addEventListener('click', () => {
+        if (!confirm('Replace all local library data with this file? This cannot be undone.')) return;
+        pendingImportMode = 'replace';
+        document.getElementById('vaultImportFile')?.click();
+      });
+      document.getElementById('vaultImportFile')?.addEventListener('change', async e => {
+        const f = e.target.files?.[0];
+        e.target.value = '';
+        if (!f) return;
+        try {
+          await triggerVaultImportFile(f, pendingImportMode);
+          showToast(pendingImportMode === 'replace' ? 'Library replaced' : 'Library merged', 'check');
+        } catch (err) {
+          alert('Import failed: ' + (err.message || err));
+        }
+      });
+
+      document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear your watch history? This cannot be undone.')) {
+          localStorage.removeItem('history');
+          showToast('Watch history cleared', 'trash-2');
+        }
+      });
+
+      document.getElementById('clearWatchlistBtn').addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear your watchlist? This cannot be undone.')) {
+          localStorage.removeItem('watchlist');
+          showToast('Watchlist cleared', 'trash-2');
+        }
+      });
+
+      document.getElementById('clearContinueWatchingBtn').addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear your continue watching list? This cannot be undone.')) {
+          localStorage.removeItem('continueWatching');
+          showToast('Continue watching cleared', 'trash-2');
+        }
+      });
+
+      document.getElementById('resetSettingsBtn').addEventListener('click', () => {
+        if (confirm('Are you sure you want to reset all settings to default? This cannot be undone.')) {
+          const defaults = {
+            theme: 'dark',
+            accent: 'cream',
+            defaultServer: 'videasy',
+            autoplay: true,
+            skipButtons: true,
+            fontSize: 'medium',
+            autoPlayTrailers: false,
+            notifications: true
+          };
+          localStorage.setItem('vault_settings', JSON.stringify(defaults));
+          loadSettingsUI();
+          applyTheme(defaults.theme);
+          applyAccent(defaults.accent);
+          applyFontSize(defaults.fontSize);
+          showToast('Settings reset to defaults', 'rotate-ccw');
+        }
+      });
+
+      // Initialize settings UI
+      loadSettingsUI();
+    })();
+  </script>
+</body>
+
+</html>

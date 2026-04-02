@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+    <script>
+  if (window.location.pathname.endsWith('/index.html')) {
+    const cleanUrl = window.location.pathname.replace('/index.html', '/');
+    window.history.replaceState({}, '', cleanUrl);
+  } else if (window.location.pathname.endsWith('.html')) {
+    const cleanUrl = window.location.pathname.replace('.html', '');
+    window.history.replaceState({}, '', cleanUrl);
+  }
+</script>
+
+    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Vault</title>
+  <link rel="stylesheet" href="style.css?v=4" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-left">
+    <button class="hamburger-btn" id="hamburgerBtn" title="Menu">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+
+  <a class="nav-logo" href="index.html">
+    <img src="vault-logo.png" alt="Vault" class="logo-image" />
+  </a>
+
+  <div class="nav-actions">
+    <button class="nav-trending-btn" id="navTrendingBtn" title="Trending">
+      <i data-lucide="trending-up"></i>
+    </button>
+    <button class="nav-search-btn" id="searchOpenBtn" title="Search">
+      <i data-lucide="search"></i>
+    </button>
+  </div>
+</nav>
+
+<div class="hamburger-overlay" id="hamburgerOverlay"></div>
+
+<div class="hamburger-menu" id="hamburgerMenu">
+  <div class="hamburger-header">
+    <button class="hamburger-close" id="hamburgerCloseBtn">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <div class="hamburger-content">
+    <div class="hamburger-section">
+      <a class="hamburger-link" href="index.html">
+        <i data-lucide="home"></i>
+        <span>Home</span>
+      </a>
+      <a class="hamburger-link" href="index.html#trendingSection">
+        <i data-lucide="trending-up"></i>
+        <span>Trending</span>
+      </a>
+      <a class="hamburger-link" href="watchlist.html">
+        <i data-lucide="bookmark"></i>
+        <span>Watchlist</span>
+      </a>
+      <a class="hamburger-link" href="lists.html">
+        <i data-lucide="layout-list"></i>
+        <span>My lists</span>
+      </a>
+      <a class="hamburger-link" href="history.html">
+        <i data-lucide="history"></i>
+        <span>History</span>
+      </a>
+    </div>
+
+    <div class="hamburger-divider"></div>
+
+    <div class="hamburger-section">
+      <div class="hamburger-section-title">Genres</div>
+      <a class="hamburger-link genre-link" href="index.html?genre=28">
+        <i data-lucide="zap"></i>
+        <span>Action</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=35">
+        <i data-lucide="smile"></i>
+        <span>Comedy</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=18">
+        <i data-lucide="drama"></i>
+        <span>Drama</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=27">
+        <i data-lucide="ghost"></i>
+        <span>Horror</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=878">
+        <i data-lucide="rocket"></i>
+        <span>Sci-Fi</span>
+      </a>
+      <a class="hamburger-link genre-link" href="index.html?genre=16">
+        <i data-lucide="sparkles"></i>
+        <span>Animation</span>
+      </a>
+    </div>
+
+    <div class="hamburger-divider"></div>
+
+    <div class="hamburger-section">
+      <a class="hamburger-link" href="settings.html">
+        <i data-lucide="settings"></i>
+        <span>Settings</span>
+      </a>
+      <a class="hamburger-link active" href="contact.html">
+        <i data-lucide="mail"></i>
+        <span>Contact</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-wrapper">
+    <div class="search-bar">
+      <i data-lucide="search"></i>
+      <input type="text" id="searchInput" placeholder="Search movies, shows, anime..." autocomplete="off" />
+      <button class="search-close" id="searchCloseBtn"><i data-lucide="x"></i></button>
+    </div>
+    <div class="search-filters" id="searchFilters">
+      <button class="filter-chip active" data-type="multi">All</button>
+      <button class="filter-chip" data-type="movie">Movies</button>
+      <button class="filter-chip" data-type="tv">TV Shows</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="main-content page">
+  <div class="contact-container">
+    
+    <div class="contact-header">
+      <i data-lucide="mail" style="width:32px;height:32px;color:var(--accent);margin-bottom:16px;"></i>
+      <h1>Get in Touch</h1>
+      <p>Feel free to reach out through any of these channels</p>
+    </div>
+
+    <div class="contact-cards">
+      
+      <a href="mailto:vo1dsole@gmail.com" class="contact-card" target="_blank" rel="noopener">
+        <div class="contact-icon gmail-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.548l8.073-6.055C21.69 2.28 24 3.434 24 5.457z"/>
+          </svg>
+        </div>
+        <div class="contact-info">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">vo1dsole@gmail.com</div>
+          <div class="contact-hint">Send me an email</div>
+        </div>
+        <div class="contact-arrow">
+          <i data-lucide="external-link"></i>
+        </div>
+      </a>
+
+      <a href="https://discord.com/users/abhroscurse" class="contact-card" target="_blank" rel="noopener">
+        <div class="contact-icon discord-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+        </div>
+        <div class="contact-info">
+          <div class="contact-label">Discord</div>
+          <div class="contact-value">abhroscurse</div>
+          <div class="contact-hint">Message me on Discord</div>
+        </div>
+        <div class="contact-arrow">
+          <i data-lucide="external-link"></i>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="app.js"></script>
+<style>
+.contact-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 80px 32px;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.contact-header h1 {
+  font-size: 2.5rem;
+  color: var(--text-heading);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.contact-header p {
+  font-size: 1rem;
+  color: var(--text-sub);
+}
+
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(240,236,228,0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-card:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.contact-card:hover::before {
+  opacity: 1;
+}
+
+.contact-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  background: #2a2a2a;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05), 
+              0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.contact-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #a0a0a0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+  transition: all 0.3s ease;
+}
+
+.gmail-icon {
+  background: #2a2a2a;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05), 
+              0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.discord-icon {
+  background: #2a2a2a;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05), 
+              0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.contact-card:hover .contact-icon {
+  background: #333;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.03), 
+              0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.contact-card:hover .contact-icon svg {
+  color: var(--accent);
+}
+
+.contact-info {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-label {
+  font-size: 0.75rem;
+  color: var(--text-sub);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.contact-value {
+  font-size: 1.1rem;
+  color: var(--text-heading);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.contact-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.contact-arrow {
+  color: var(--text-sub);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-card:hover .contact-arrow {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 60px 24px;
+  }
+  
+  .contact-header h1 {
+    font-size: 2rem;
+  }
+  
+  .contact-card {
+    padding: 24px;
+    gap: 20px;
+  }
+  
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .contact-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .contact-value {
+    font-size: 1rem;
+  }
+}
+</style>
+</body>
+</html>

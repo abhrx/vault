@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vault | Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+
+<body>
+
+  <nav class="nav" id="mainNav">
+    <div class="nav-left">
+      <button class="hamburger-btn" id="hamburgerBtn" title="Menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+
+    <a class="nav-logo" href="index.html">
+      <img src="vault-logo.png" alt="Vault" class="logo-image" />
+    </a>
+
+    <div class="nav-actions">
+      <button class="nav-trending-btn" id="navTrendingBtn" title="Trending">
+        <i data-lucide="trending-up"></i>
+      </button>
+      <button class="nav-search-btn" id="searchOpenBtn" title="Search">
+        <i data-lucide="search"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="hamburger-overlay" id="hamburgerOverlay"></div>
+
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="hamburger-header">
+      <button class="hamburger-close" id="hamburgerCloseBtn">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <div class="hamburger-content">
+      <div class="hamburger-section">
+        <a class="hamburger-link active" href="index.html">
+          <i data-lucide="home"></i>
+          <span>Home</span>
+        </a>
+        <a class="hamburger-link" href="index.html#trendingSection" id="hamburgerTrendingLink">
+          <i data-lucide="trending-up"></i>
+          <span>Trending</span>
+        </a>
+        <a class="hamburger-link" href="watchlist.html">
+          <i data-lucide="bookmark"></i>
+          <span>Watchlist</span>
+        </a>
+        <a class="hamburger-link" href="lists.html">
+          <i data-lucide="layout-list"></i>
+          <span>My lists</span>
+        </a>
+        <a class="hamburger-link" href="history.html">
+          <i data-lucide="history"></i>
+          <span>History</span>
+        </a>
+      </div>
+
+      <div class="hamburger-divider"></div>
+
+      <div class="hamburger-section">
+        <div class="hamburger-section-title">Genres</div>
+        <a class="hamburger-link genre-link" href="index.html?genre=28">
+          <i data-lucide="zap"></i>
+          <span>Action</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=35">
+          <i data-lucide="smile"></i>
+          <span>Comedy</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=18">
+          <i data-lucide="drama"></i>
+          <span>Drama</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=27">
+          <i data-lucide="ghost"></i>
+          <span>Horror</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=878">
+          <i data-lucide="rocket"></i>
+          <span>Sci-Fi</span>
+        </a>
+        <a class="hamburger-link genre-link" href="index.html?genre=16">
+          <i data-lucide="sparkles"></i>
+          <span>Animation</span>
+        </a>
+      </div>
+
+      <div class="hamburger-divider"></div>
+
+      <div class="hamburger-section">
+        <a class="hamburger-link" href="settings.html">
+          <i data-lucide="settings"></i>
+          <span>Settings</span>
+        </a>
+        <a class="hamburger-link" href="contact.html">
+          <i data-lucide="mail"></i>
+          <span>Contact</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-wrapper">
+      <div class="search-bar">
+        <i data-lucide="search"></i>
+        <input type="text" id="searchInput" placeholder="Search movies, shows, anime..." autocomplete="off" />
+        <button class="search-close" id="searchCloseBtn">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="search-filters" id="searchFilters">
+        <button class="filter-chip active" data-type="multi">All</button>
+        <button class="filter-chip" data-type="movie">Movies</button>
+        <button class="filter-chip" data-type="tv">TV Shows</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <div class="main-content page">
+
+    <section class="hero" id="heroSection">
+      <div class="hero-backdrop" id="heroBackdrop"></div>
+      <div class="hero-gradient"></div>
+      <div class="hero-content">
+        <div class="hero-badge" id="heroBadge">
+          <i data-lucide="trending-up" style="width:12px;height:12px;"></i>
+          <span>Featured Today</span>
+        </div>
+        <img class="hero-logo" id="heroLogo" src="" alt="" style="display:none;" />
+        <h1 class="hero-title" id="heroTitle">Loading...</h1>
+        <div class="hero-meta" id="heroMeta"></div>
+        <p class="hero-overview" id="heroOverview"></p>
+        <div class="hero-actions" id="heroActions">
+          <button class="btn-primary" id="heroPlayBtn">
+            <i data-lucide="play"></i> Watch Now
+          </button>
+          <button class="btn-secondary" id="heroInfoBtn">
+            <i data-lucide="info"></i> More Info
+          </button>
+        </div>
+      </div>
+      <div class="hero-scroll-indicator">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <section class="section" id="continueWatchingSection" style="display:none;">
+      <div class="section-header">
+        <div class="section-title">Continue Watching</div>
+        <button class="section-action" id="continueClearBtn">Clear</button>
+      </div>
+      <div class="row-wrapper">
+        <div class="card-row" id="row-continue-watching"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title">Recommended for You</div>
+        <button class="section-action" id="recommendedRefreshBtn">Refresh</button>
+      </div>
+      <div class="row-wrapper">
+        <div class="card-row" id="row-recommended"></div>
+      </div>
+    </section>
+
+    <section class="section trending-section" id="trendingSection">
+      <div class="section-header">
+        <div>
+          <div class="section-title">
+            <i data-lucide="trending-up" style="width:20px;height:20px;margin-right:8px;"></i>
+            Trending
+          </div>
+          <div class="section-subtitle" style="margin-top:3px;">What's hot right now</div>
+        </div>
+        <div class="trending-tabs">
+          <button class="trending-tab active" data-period="day">Today</button>
+          <button class="trending-tab" data-period="week">This Week</button>
+        </div>
+      </div>
+      <div class="row-wrapper">
+        <div class="card-row" id="row-trending-all"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div>
+            <div class="section-title">Trending Movies</div>
+            <div class="section-subtitle" style="margin-top:3px;">This week's top picks</div>
+          </div>
+          <span class="genre-badge" id="trendingMoviesGenreBadge" style="display: none; padding: 4px 10px; background: var(--accent); color: var(--bg-base); border-radius: 4px; font-size: 0.75rem; font-weight: 600; white-space: nowrap;"></span>
+        </div>
+        <div class="genre-dropdown-wrapper">
+          <button class="genre-dropdown-btn" id="genreDropdownBtn">
+            <span id="genreDropdownLabel">All Genres</span>
+            <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
+          </button>
+          <div class="genre-dropdown-menu" id="genreDropdownMenu" style="display: none;">
+            <button class="genre-dropdown-item active" data-genre="all">All</button>
+            <button class="genre-dropdown-item" data-genre="28">Action</button>
+            <button class="genre-dropdown-item" data-genre="35">Comedy</button>
+            <button class="genre-dropdown-item" data-genre="18">Drama</button>
+            <button class="genre-dropdown-item" data-genre="27">Horror</button>
+            <button class="genre-dropdown-item" data-genre="878">Sci-Fi</button>
+            <button class="genre-dropdown-item" data-genre="53">Thriller</button>
+            <button class="genre-dropdown-item" data-genre="16">Animation</button>
+            <button class="genre-dropdown-item" data-genre="10759">Adventure</button>
+            <button class="genre-dropdown-item" data-genre="10749">Romance</button>
+            <button class="genre-dropdown-item" data-genre="99">Documentary</button>
+          </div>
+        </div>
+      </div>
+      <div class="row-wrapper">
+        <div class="card-row" id="row-trending-movies"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div>
+            <div class="section-title">Popular TV Shows</div>
+            <div class="section-subtitle" style="margin-top:3px;">Currently airing</div>
+          </div>
+          <span class="genre-badge" id="popularTVGenreBadge" style="display: none; padding: 4px 10px; background: var(--accent); color: var(--bg-base); border-radius: 4px; font-size: 0.75rem; font-weight: 600; white-space: nowrap;"></span>
+        </div>
+      </div>
+      <div class="row-wrapper">
+        <div class="card-row" id="row-popular-tv"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Top Rated All Time</div>
+          <div class="section-subtitle" style="margin-top:3px;">Critics' favorites</div>
+        </div>
+      </div>
+      <div class="row-wrapper">
+        <div class="card-row" id="row-top-rated"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Anime</div>
+          <div class="section-subtitle" style="margin-top:3px;">Animation from Japan</div>
+        </div>
+      </div>
+      <div class="row-wrapper">
+        <div class="card-row" id="row-anime"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Now in Theaters</div>
+          <div class="section-subtitle" style="margin-top:3px;">Fresh releases</div>
+        </div>
+      </div>
+      <div class="row-wrapper">
+        <div class="card-row" id="row-now-playing"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="detail-overlay" id="detailOverlay">
+    <div class="detail-modal" style="position:relative;">
+      <button class="detail-close" id="detailCloseBtn">
+        <i data-lucide="x"></i>
+      </button>
+      <img class="detail-backdrop" id="detailBackdrop" src="" alt="" onerror="this.style.display='none'" />
+      <div class="detail-body">
+        <div class="detail-header">
+          <img class="detail-poster" id="detailPoster" src="" alt="" onerror="this.style.display='none'" />
+          <div class="detail-info">
+            <h2 class="detail-title" id="detailTitle"></h2>
+            <div class="detail-meta" id="detailMeta"></div>
+          </div>
+        </div>
+        <div class="detail-preview" id="detailPreview">
+          <iframe id="detailPreviewFrame" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="detail-overview" id="detailOverview"></p>
+        <div class="detail-actions" id="detailActions"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="player-page" id="playerPage">
+    <div class="player-header">
+      <button class="player-back-btn" id="playerBackBtn">
+        <i data-lucide="arrow-left"></i> Back to Vault
+      </button>
+    </div>
+
+    <div class="player-video-container">
+      <iframe id="playerIframe" allow="autoplay; fullscreen *; encrypted-media *; picture-in-picture"
+        allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe>
+      <div class="player-click-overlay" id="playerClickOverlay"></div>
+    </div>
+
+    <div class="player-content">
+      <div class="player-meta-section">
+        <img id="playerInfoLogo" src="" alt="Logo" onerror="this.style.display='none'">
+        <h1 id="playerInfoTitle"></h1>
+        <div class="player-info-meta" id="playerInfoMeta"></div>
+        <p class="player-info-desc" id="playerInfoDesc"></p>
+
+        <div class="player-settings">
+          <h3>Host / Server</h3>
+          <div id="sourceDropdownRoot"></div>
+
+          <div class="player-action-buttons" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="btn-secondary" id="btnShareLink">Copy Share Link</button>
+            <button class="btn-secondary" id="btnRandomPick">Random Pick</button>
+          </div>
+        </div>
+      </div>
+      <div class="player-episodes-section" id="episodesSection" style="display: none;">
+        <div class="episodes-header">
+          <h3>Episodes</h3>
+          <select class="ep-select" id="seasonSelect"></select>
+        </div>
+        <div class="episodes-grid" id="episodeBtns"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer"
+    style="position: fixed; top: 20px; right: 20px; z-index: 10000; display: flex; flex-direction: column; pointer-events: none;">
+  </div>
+
+  <div id="announcementModal" class="detail-overlay"
+    style="z-index: 10000; display: none; align-items: center; justify-content: center;">
+    <div
+      style="background: var(--bg-card, #1a1a1a); padding: 30px; border-radius: 12px; max-width: 400px; text-align: center; border: 1px solid var(--border-color, #333);">
+      <h2 id="announcementTitle" style="margin-top:0; color: var(--accent, #F0ECE4);"></h2>
+      <p id="announcementMsg" style="color: var(--text-muted, #aaa); line-height: 1.5; margin-bottom: 25px;"></p>
+      <button id="announcementBtn" class="btn-primary" style="width: 100%;"></button>
+    </div>
+  </div>
+
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "@radix-ui/react-dropdown-menu": "https://esm.sh/@radix-ui/react-dropdown-menu@2.1.2?external=react,react-dom"
+  }
+}
+</script>
+
+  <script src="config.js?v=4"></script>
+  <script src="app.js?v=4"></script>
+
+  <script type="module">
+    import React, { useState, useEffect, useCallback } from 'react';
+    import { createRoot } from 'react-dom/client';
+    import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+
+    const e = React.createElement;
+
+    const SOURCES = [
+      { id: 'vidlink', label: 'VidLink' },
+      { id: 'vidrock', label: 'VidRock' },
+      { id: '111movies', label: '111Movies' },
+      { id: 'vidzee', label: 'VidZee' },
+      { id: 'vidsrc', label: 'VidSrc 1' },
+      { id: 'vidsrc2', label: 'VidSrc 2' },
+      { id: 'vidsrc3', label: 'VidSrc 3' },
+      { id: 'videasy', label: 'Videasy' },
+      { id: 'vidnest', label: 'VidNest' },
+      { id: 'rivestream', label: 'RiveStream' },
+      { id: 'vidsrcxyz', label: 'VidSrc XYZ' },
+      { id: 'vidsrcicu', label: 'VidSrc ICU' },
+    ];
+
+    function ChevronIcon() {
+      return e('svg', {
+        className: 'source-chevron',
+        width: 12, height: 12,
+        viewBox: '0 0 12 12',
+        fill: 'none',
+        stroke: 'currentColor',
+        strokeWidth: 1.8,
+        strokeLinecap: 'round',
+        strokeLinejoin: 'round'
+      }, e('polyline', { points: '2 4 6 8 10 4' }));
+    }
+
+    function CheckIcon() {
+      return e('svg', {
+        width: 12, height: 12,
+        viewBox: '0 0 12 12',
+        fill: 'none',
+        stroke: 'currentColor',
+        strokeWidth: 2,
+        strokeLinecap: 'round',
+        strokeLinejoin: 'round'
+      }, e('polyline', { points: '2 6 5 9 10 3' }));
+    }
+
+    function SourceDropdown() {
+      const [selected, setSelected] = useState('vidlink');
+
+      useEffect(() => {
+        const handler = (ev) => setSelected(ev.detail || 'vidlink');
+        window.addEventListener('playerSourceChanged', handler);
+        return () => window.removeEventListener('playerSourceChanged', handler);
+      }, []);
+
+      const handleSelect = useCallback((srcId) => {
+        setSelected(srcId);
+        if (window.setPlayerSource) window.setPlayerSource(srcId);
+      }, []);
+
+      const current = SOURCES.find(s => s.id === selected) || SOURCES[0];
+
+      return e(DropdownMenu.Root, null,
+        e(DropdownMenu.Trigger, { className: 'source-dropdown-trigger', asChild: false },
+          e('span', { className: 'source-dropdown-label' }, current.label),
+          e(ChevronIcon)
+        ),
+        e(DropdownMenu.Portal, null,
+          e(DropdownMenu.Content, {
+            className: 'source-dropdown-content',
+            sideOffset: 8,
+            align: 'start',
+            avoidCollisions: true
+          },
+            ...SOURCES.map(src =>
+              e(DropdownMenu.Item, {
+                key: src.id,
+                className: 'source-dropdown-item' + (src.id === selected ? ' selected' : ''),
+                onSelect: () => handleSelect(src.id)
+              },
+                e('span', { className: 'source-item-label' }, src.label),
+                src.id === selected ? e(CheckIcon) : null
+              )
+            )
+          )
+        )
+      );
+    }
+
+    const container = document.getElementById('sourceDropdownRoot');
+    if (container) {
+      const root = createRoot(container);
+      root.render(e(SourceDropdown));
+    }
+  </script>
+
+</body>
+
+</html>
